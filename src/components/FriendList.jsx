@@ -8,7 +8,7 @@ import IconButton from 'material-ui/lib/icon-button';
 
 import styles from '../styles/rootStyles';
 
-class NewFriendForm extends Component {
+class FriendList extends Component {
   static propTypes = {
     friends: PropTypes.array.isRequired
   }
@@ -44,21 +44,18 @@ class NewFriendForm extends Component {
       // Change our bffIcon to be a solid in star if our friend is a BFF
       // An example of a solid star from Material UI is shown below
       // <IconButton><Star color="white"/></IconButton>
-      let bffIcon = <IconButton><StarBorder color="white"/></IconButton>;
-
-      // Create a unique identiconString below to make each friends image unique.
-      // Use any combination of the data you have from props.
-      let identiconString = `change-this-to-something-that-will-be-uniqe-every-iteration`;
+      let star = isBFF ? <Star color="white" /> : <StarBorder color="white" />
+      let bffIcon = <IconButton>{star}</IconButton>;
 
       // Update the return block below to have *actual* friend data from your form.
       return(
         <GridTile
           key={key}
           style={{fontFamily: 'Roboto, sans-serif'}}
-          title={`your-friends-name`}
-          subtitle={<span>{`your-friends-@twitter`}</span>}
+          title={`${firstName} ${lastName}`}
+          subtitle={<span>{twitter}</span>}
           actionIcon={bffIcon}>
-          <img src={`http://identicon.org?t=${identiconString}&s=200`} />
+          <img src={`http://identicon.org?t=${key}&s=200`} />
         </GridTile>
       );
     })
@@ -82,4 +79,4 @@ class NewFriendForm extends Component {
   }
 }
 
-export default NewFriendForm;
+export default FriendList;
